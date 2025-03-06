@@ -1,5 +1,6 @@
-package com.sloimay
+package com.sloimay.triangles
 
+import com.sloimay.Texture
 import com.sloimay.smath.vectors.Vec3
 
 

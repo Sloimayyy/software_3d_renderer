@@ -1,20 +1,18 @@
-package com.sloimay
+package com.sloimay.triangles
 
+import com.sloimay.Texture
 import com.sloimay.smath.vectors.Vec2
-import com.sloimay.smath.vectors.Vec3
 
-data class StPointData(
+data class RtPointData(
     val depth: Float,
-    val u: Float,
-    val v: Float,
     val uOverW: Float,
     val vOverW: Float,
     val oneOverW: Float
 )
-data class StPoint(val pos: Vec2, val data: StPointData)
+data class RtPoint(val pos: Vec2, val data: RtPointData)
 
 class RenderTriangle(
-    val points: Array<StPoint>,
+    val points: Array<RtPoint>,
     val texture: Texture,
 ) {
 

@@ -1,6 +1,6 @@
 package com.sloimay
 
-import com.sloimay.smath.vectors.Vec3
+import com.sloimay.triangles.WorldTriangle
 import com.sloimay.worldentities.WorldEntity
 
 class World() {

@@ -1,5 +1,6 @@
 package com.sloimay.helpers
 
+import com.sloimay.smath.abs
 import com.sloimay.smath.vectors.IVec3
 import com.sloimay.smath.vectors.Vec2
 import com.sloimay.smath.vectors.Vec3
@@ -17,6 +18,8 @@ fun Vec3.srgbToCol(): Color {
     val clamped = this.clamp(Vec3.ZERO, Vec3.ONE)
     return clamped.times(255f).round().asIVec3().rgbToCol()
 }
+
+fun Boolean.toInt() = if (this) 1 else 0
 
 
 fun deepCopyBufferedImg(bufImg: BufferedImage): BufferedImage {
@@ -53,4 +56,30 @@ fun triInterpWeights(p: Vec3, tri: Array<Vec3>): Array<Float> {
     val w2 = f0.cross(f1).length() / triArea
 
     return arrayOf(w0, w1, w2)
+}
+
+
+
+
+class FloatBuffer2d(val width: Int, val height: Int, init: (Int, Int) -> Float = { x, y -> 0f }) {
+
+    val buffer = FloatArray(width * height)
+
+    init {
+        for (y in 0 until height) for (x in 0 until width) {
+            buffer[y * width + x] = init(x, y)
+        }
+    }
+
+    operator fun set(x: Int, y: Int, v: Float) {
+        buffer[y * width + x] = v
+    }
+    operator fun get(x: Int, y: Int): Float {
+        return buffer[y * width + x]
+    }
+
+    fun fill(el: Float) {
+        buffer.fill(el)
+    }
+
 }

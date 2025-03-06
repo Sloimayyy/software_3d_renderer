@@ -2,15 +2,12 @@ package com.sloimay
 
 import com.sloimay.smath.Utils
 import com.sloimay.smath.vectors.IVec2
-import com.sloimay.smath.vectors.IVec3
 import com.sloimay.smath.vectors.Vec2
-import com.sloimay.smath.vectors.Vec3
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.Polygon
 import java.awt.Rectangle
-import java.awt.Stroke
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 import java.awt.image.BufferedImage
@@ -101,7 +98,17 @@ class Window(
         imgGraphics.drawPolygon(poly)
     }
 
-    fun render() {
+    fun drawLine(x1: Int, y1: Int, x2: Int, y2: Int, r: Float, col: Color) {
+        imgGraphics.color = col
+        imgGraphics.stroke = BasicStroke(r)
+        imgGraphics.drawLine(x1, y1, x2, y2)
+    }
+
+    fun drawLine(a: IVec2, b: IVec2, r: Float, col: Color) {
+        this.drawLine(a.x, a.y, b.x, b.y, r, col)
+    }
+
+    fun flip() {
         frame.graphics.drawImage(bufferedImg, 0, 0, null)
         resetBufferedImg()
         frameCount += 1

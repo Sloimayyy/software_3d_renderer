@@ -1,11 +1,11 @@
 package com.sloimay.worldentities
 
-import com.sloimay.CUBE_TEXTURE
-import com.sloimay.WorldTriangle
-import com.sloimay.WtPoint
-import com.sloimay.WtPointData
+import com.sloimay.*
 import com.sloimay.smath.vectors.Quat
 import com.sloimay.smath.vectors.Vec3
+import com.sloimay.triangles.WorldTriangle
+import com.sloimay.triangles.WtPoint
+import com.sloimay.triangles.WtPointData
 
 class CubeEntity(pos: Vec3, rotation: Quat) : WorldEntity(pos, rotation) {
 
@@ -27,6 +27,14 @@ class CubeEntity(pos: Vec3, rotation: Quat) : WorldEntity(pos, rotation) {
                     WtPoint(vertices[0], WtPointData(0f, 0f)),
                     WtPoint(vertices[1], WtPointData(1f, 0f)),
                     WtPoint(vertices[2], WtPointData(0f, 1f)),
+                ),
+                CUBE_TEXTURE,
+            ),
+            WorldTriangle(
+                arrayOf(
+                    WtPoint(vertices[2], WtPointData(0f, 1f)),
+                    WtPoint(vertices[3], WtPointData(1f, 1f)),
+                    WtPoint(vertices[1], WtPointData(1f, 0f)),
                 ),
                 CUBE_TEXTURE,
             ),
