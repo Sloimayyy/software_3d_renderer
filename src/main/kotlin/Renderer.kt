@@ -89,11 +89,11 @@ class Renderer(val window: Window) {
                             getT(insidePoint, outside2Point, plane)
                         )
 
-                        println("==============")
+                        /*println("==============")
                         println(newVert1)
                         println(newVert2)
                         println(newVert3)
-
+                        */
                         nextClippedTriangles.add(
                             ClippedTriangle(
                                 arrayOf(newVert1, newVert2, newVert3),

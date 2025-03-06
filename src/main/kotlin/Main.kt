@@ -2,6 +2,7 @@ package com.sloimay
 
 import com.sloimay.smath.Utils.Companion.remap
 import com.sloimay.smath.clamp
+import com.sloimay.smath.floor
 import com.sloimay.smath.vectors.*
 import com.sloimay.worldentities.CubeEntity
 import java.awt.Color
@@ -36,9 +37,9 @@ fun main() {
         var lastFpsCheckTimestamp = timeSource.markNow()
         var fpsCheckFrameCount = 0
         val player = Player(
-            pos = Vec3(0f, 0f, 0f),
-            yaw = 0f,
-            pitch = 0f,
+            pos = Vec3(-4f, 18f, -4f),
+            yaw = PI.toFloat() - PI.toFloat() / 4f,
+            pitch = PI.toFloat() / 5f,
             camera = Camera(
                 fovY = fovY,
                 aspect = aspect,
@@ -49,10 +50,30 @@ fun main() {
         val world = World()
 
 
+        world.blocks[0, 0, 2] = Block(ANDESITE_TEXTURE, true, "andesite")
+        world.blocks[0, 0, 3] = Block(ANDESITE_TEXTURE, true, "andesite")
+        world.blocks[0, 0, 4] = Block(ANDESITE_TEXTURE, true, "andesite")
+        world.blocks[0, 1, 3] = Block(ANDESITE_TEXTURE, true, "andesite")
+        world.blocks[0, 2, 3] = Block(ANDESITE_TEXTURE, true, "andesite")
+
+        /*
+        for (x in 0 until world.worldSize.x) for (z in 0 until world.worldSize.z) {
+            val y = (sin(sqrt(x.toFloat().pow(2f) + z.toFloat().pow(2f)) * 0.4f) * 3f + 5f).floor().toInt()
+            world.blocks[x, y, z] = Block(GRASS_BLOCK_TEXTURE, true, "grass_block")
+            for (bY in 0 until y) {
+                if (abs(y - bY) > 2) {
+                    world.blocks[x, bY, z] = Block(STONE_TEXTURE, true, "stone")
+                } else {
+                    world.blocks[x, bY, z] = Block(DIRT_TEXTURE, true, "dirt")
+                }
+            }
+        }
+         */
+
 
         val cubeEntity = CubeEntity(Vec3(0f, 0f, -2f), Quat.IDENTITY)
 
-        world.entities.add(cubeEntity)
+        //world.entities.add(cubeEntity)
 
         while (true) {
 

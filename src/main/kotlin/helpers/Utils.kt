@@ -83,3 +83,32 @@ class FloatBuffer2d(val width: Int, val height: Int, init: (Int, Int) -> Float =
     }
 
 }
+
+
+
+class Grid<T>(val size: IVec3, init: (Int, Int, Int) -> T) {
+
+    val buffer = mutableListOf<T>()
+
+    init {
+        for (y in 0 until size.y) for (z in 0 until size.z) for (x in 0 until size.x) {
+            buffer.add(init(x, y, z))
+        }
+    }
+
+    private fun coordToIdx(x: Int, y: Int, z: Int): Int {
+        return y * size.x * size.z + z * size.x + x
+    }
+
+    operator fun set(x: Int, y: Int, z: Int, v: T) {
+        buffer[coordToIdx(x, y, z)] = v
+    }
+    operator fun get(x: Int, y: Int, z: Int): T {
+        return buffer[coordToIdx(x, y, z)]
+    }
+
+    fun fill(el: T) {
+        buffer.fill(el)
+    }
+
+}
